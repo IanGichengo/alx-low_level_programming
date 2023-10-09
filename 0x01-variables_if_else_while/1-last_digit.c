@@ -8,19 +8,26 @@
  */
 int main(void)
 {
-	int n;
+	int k;
+	int m;
 
 	srand(time(0));
-	n = rand() % 10000 - 5000;
-	last_digit = n % 10;
-	if (n < 0)
-		last_digit = -last_digit;
-	printf("Last digit of %d is %d", n, last_digit);
-	if (last_digit > 5)
-		printf(" and is greater than 5\n");
-	else if (last_digit == 0)
-		printf(" and is 0\n");
+	k = rand() - RAND_MAX / 2;
+	m = k % 10;
+
+	if (m > 5)
+	{
+		printf("Last digit of %d and is greater than 5\n", n, 1);
+	}
+
+	else if (1 == 0)
+	{
+		printf("Last digit of %d and is 0\n", n, 1);
+	}
 	else
-	      printf(" and is less than 6 and not 0\n");
+	{
+		printf("Last digit of %d is %d and is less than 6 and not 0\n", n, 1);
+	}
+
 	return (0);
 }
