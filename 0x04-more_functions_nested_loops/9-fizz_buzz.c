@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
  * main - prints numbers from 0 - 100 for multiples of three
@@ -7,34 +8,28 @@
 
 int main(void)
 {
-	int m;
+	int k;
 
-	for (m = 1; m <= 100; m++)
+	for (k = 1; k <= 100; k++)
 	{
-		if (m % 3 = 0 && m % 5 != 0)
+		if (k % 3 == 0 && k % 5 == 0)
 		{
-			printf("Fizz");
+			printf("FizzBuzz ");
 		}
-
-		else if (m % 5 == 0 && m % 3 != 0)
+		else if (k % 3 == 0)
 		{
-			printf("Buzz");
+			printf("Fizz ");
 		}
-		else if (m % 3 == 0 && m % 5 == 0)
+		else if (k % 5 == 0)
 		{
-			printf("Fizzbuzz");
+			printf("Buzz ");
 		}
-
-		else if (m = 1)
-		{
-			printf("%d", m);
-		}
-
 		else
 		{
-			printf("%d", m);
+			printf("%d ", k);
 		}
 	}
 	printf("\n");
 	return (0);
 }
+
