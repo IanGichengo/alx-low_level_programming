@@ -10,35 +10,42 @@
 
 char **strtow(char *str)
 {
-	int i = 0;
-	int word_count = 0;
-	int word_index = 0;
-	char *word_start = NULL;
-	char **words = NULL;
+	char **words;
+	int n, i, in_word;
+	char *p, *q;
 
-	if (str == NULL || str[0] == '\0')
+	if (str == NULL || *str == '\0')
 		return (NULL);
-	for (i = 0; str[i]; i++)
-		if (str[i] != ' ' && (i == 0 || str[i - 1] == ' '))
-			word_count++;
-	words = malloc((word_count + 1) * sizeof(char *));
+
+	n = in_word = 0;
+	for (p = str; *p != '\0'; p++)
+		if (*p != ' ' && in_word == 0)
+			n++, in_word = 1;
+		else if (*p == ' ' && in_word == 1)
+			in_word = 0;
+
+	words = (char **)malloc((n + 1) * sizeof(char *));
 	if (words == NULL)
 		return (NULL);
-	word_start = strtok(str, " ");
-	while (word_start != NULL)
-	{
-		words[word_index] = strdup(word_start);
-		if (words[word_index] == NULL)
-		{
-			for (i = 0; i < word_index; i++)
-				free(words[i]);
-			free(words);
-			return (NULL);
-		}
-		word_index++;
-		word_start = strtok(NULL, " ");
-	}
-	words[word_index] = NULL;
 
+	words[n] = NULL;
+	for (i = 0; i < n; i++)
+	{
+		while (*str == ' ')
+			str++;
+
+		p = str;
+		while (*p != ' ' && *p != '\0')
+			p++;
+
+		words[i] = (char *)malloc((p - str + 1) * sizeof(char));
+			if (words[i] == NULL)
+				return (NULL);
+		q = words[i];
+		while (str < p)
+			*q++ = *str++;
+		*q = '\0';
+	}
 	return (words);
 }
+
