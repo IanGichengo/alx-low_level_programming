@@ -16,7 +16,8 @@ char **strtow(char *str)
 
 	if (str == NULL || *str == '\0')
 		return (NULL);
-
+	if (strlen(str) == 1 && *str == ' ')
+		return (NULL);
 	n = in_word = 0;
 	for (p = str; *p != '\0'; p++)
 		if (*p != ' ' && in_word == 0)
