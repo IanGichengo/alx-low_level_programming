@@ -1,6 +1,11 @@
 #ifndef FUNCTIONS_H
 #define FUNCTIONS_H
 
+#include <stdio.h>
+#include <stdarg.h>
+
+/* Prototypes */
+
 int sum_them_all(const unsigned int n, ...);
 void print_numbers(const char *separator, const unsigned int n, ...);
 void print_strings(const char *separator, const unsigned int n, ...);
