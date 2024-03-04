@@ -174,7 +174,6 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 
 	if (key == NULL || ht == NULL)
 		return (0);
-/* set the item in the table */
 	index = key_index((unsigned char *)key, ht->size);
 	node = ht->array[index];
 	if (node == NULL)
@@ -191,7 +190,6 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 	}
 	if (node == NULL)
 		return (0);
-/* arrange the item in the sorted linked list */
 	if (ht->shead == NULL)
 		return (slist_set_first(ht, node));
 	curr_old_node = ht->shead;
