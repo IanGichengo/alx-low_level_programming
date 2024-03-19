@@ -1,5 +1,8 @@
-#ifndef CALCULATION_H
-#define CALCULATION_H
+#ifndef _3_CALC_H_
+#define _3_CALC_H_
+
+#include <stdio.h>
+#include <stdlib.h>
 
 /**
  * struct op - Struct op
@@ -9,9 +12,11 @@
  */
 typedef struct op
 {
-    char *op;
-    int (*f)(int a, int b);
+	char *op;
+	int (*f)(int a, int b);
 } op_t;
+
+/*Prototypes*/
 
 int op_add(int a, int b);
 int op_sub(int a, int b);
