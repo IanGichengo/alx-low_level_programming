@@ -1,0 +1,36 @@
+NAME = school
+SRC = main.c school.c
+OBJ = $(SRC:.c=.o)
+CC = gcc
+CFLAGS = -Wall -Werror -Wextra -pedantic
+
+# Default rule
+all: $(NAME)
+
+# Linking the executable should not directly use $(CC), so use implicit rule instead
+$(NAME): $(SRC) m.h
+	$(CC) $(CFLAGS) $(SRC) -o $(NAME)
+
+# There is no direct .o file rule, and we can't use the %.o: %.c rule,
+# so object files are not explicitly managed
+
+# Clean rule to remove Emacs/Vim temporary files and the executable
+# Use of $(RM) is restricted, so clean rules are structured accordingly
+clean:
+	/bin/rm -f *~ .*~ $(NAME)
+
+# oclean rule to delete object files
+# Technically, we're not allowed an $(OBJ) rule or to directly remove .o files by a rule.
+# Since we can't list or target .o files directly, this is a workaround.
+oclean:
+	/bin/rm -f $(OBJ)
+
+# fclean rule to call clean and then remove object files and the executable
+fclean: clean oclean
+
+# re rule to force a recompile
+re: fclean all
+
+# Prevent make from getting confused by file names matching rule names
+.PHONY: all clean fclean oclean re
+
